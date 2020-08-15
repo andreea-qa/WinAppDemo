@@ -9,12 +9,13 @@ namespace WinAppDemo
     public class UnitTest1
     {
         private static WindowsDriver<WindowsElement> session;
+        const string calcApp = "Microsoft.WindowsCalculator_8wekyb3d8bbwe!App";
 
         [ClassInitialize]
         public void BeforeTests()
         {
             var options = new AppiumOptions();
-            options.AddAdditionalCapability("app", "Microsoft.WindowsCalculator_8wekyb3d8bbwe!App");
+            options.AddAdditionalCapability("app", calcApp);
             options.AddAdditionalCapability("deviceName", "WindowsPC");
             session = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), options);
         }
