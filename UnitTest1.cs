@@ -6,12 +6,12 @@ using OpenQA.Selenium.Appium.Windows;
 namespace WinAppDemo
 {
     [TestClass]
-    public class UnitTest1
+    public class CalculatorTest
     {
         private static WindowsDriver<WindowsElement> session;
         const string calcApp = "Microsoft.WindowsCalculator_8wekyb3d8bbwe!App";
 
-        [ClassInitialize]
+        [TestInitialize]
         public void BeforeTests()
         {
             var options = new AppiumOptions();
@@ -32,7 +32,7 @@ namespace WinAppDemo
             Assert.IsTrue(session.FindElementByAccessibilityId("CalculatorResults").Text.Equals("Display is 11"));
         }
 
-        [ClassCleanup]
+        [TestCleanup]
         public void CleanUp()
         {
             if (session != null) 
