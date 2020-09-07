@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Windows;
 
@@ -22,14 +23,34 @@ namespace WinAppDemo
         
 
         [TestMethod]
-        public void AddNumbers()
+        public void VerifyAdditionWorksAsExpected()
         {
             session.FindElementByAccessibilityId("num8Button").Click();
             session.FindElementByAccessibilityId("plusButton").Click();
             session.FindElementByAccessibilityId("num3Button").Click();
-            session.FindElementByName("Equals").Click();
+            session.FindElementByAccessibilityId("equalButton").Click();
             Console.WriteLine(session.FindElementByAccessibilityId("CalculatorResults").Text);
             Assert.IsTrue(session.FindElementByAccessibilityId("CalculatorResults").Text.Equals("Display is 11"));
+        }
+
+        [TestMethod]
+        public void VerifySubtractionWorksAsExpected()
+        {
+            session.FindElementByName("Nine").Click();
+            session.FindElementByName("Minus").Click();
+            session.FindElementByName("Four").Click();
+            session.FindElementByName("Equals").Click();
+            Console.WriteLine(session.FindElementByAccessibilityId("CalculatorResults").Text);
+            Assert.IsTrue(session.FindElementByAccessibilityId("CalculatorResults").Text.Equals("Display is 5"));
+        }
+
+        [TestMethod]
+        public void VerifyDivisionWorksAsExpected()
+        {
+            session.FindElementByAccessibilityId("CalculatorResults").SendKeys("15/3");
+            session.FindElementByAccessibilityId("CalculatorResults").SendKeys(Keys.Enter);
+            Console.WriteLine(session.FindElementByAccessibilityId("CalculatorResults").Text);
+            Assert.IsTrue(session.FindElementByAccessibilityId("CalculatorResults").Text.Equals("Display is 5"));
         }
 
         [TestCleanup]
