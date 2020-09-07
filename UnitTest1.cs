@@ -45,6 +45,17 @@ namespace WinAppDemo
         }
 
         [TestMethod]
+        public void VerifyMultiplicationWorksAsExpected()
+        {
+            session.FindElementByXPath("//Button[@Name='Six']").Click();
+            session.FindElementByXPath("//Button[@Name='Multiply by']").Click();
+            session.FindElementByXPath("//Button[@Name='Seven']").Click();
+            session.FindElementByXPath("//Button[@Name='Equals']").Click();
+            Console.WriteLine(session.FindElementByAccessibilityId("CalculatorResults").Text);
+            Assert.IsTrue(session.FindElementByAccessibilityId("CalculatorResults").Text.Equals("Display is 42"));
+        }
+
+        [TestMethod]
         public void VerifyDivisionWorksAsExpected()
         {
             session.FindElementByAccessibilityId("CalculatorResults").SendKeys("15/3");
